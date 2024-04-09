@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Self
 
 
 class HTMLNode:
@@ -6,7 +6,7 @@ class HTMLNode:
         self,
         tag: Optional[str] = None,
         value: Optional[str] = None,
-        children: Optional[list[any]] = None,
+        children: Optional[list[Self]] = None,
         props: Optional[dict[str, str]] = None,
     ) -> None:
         self.tag = tag
