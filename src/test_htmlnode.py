@@ -20,6 +20,10 @@ class TestLeafNode(unittest.TestCase):
         node = LeafNode(None, "Rawr text")
         self.assertEqual(node.to_html(), "Rawr text")
 
+    def test_to_html_no_props(self):
+        node = LeafNode("p", "This is a paragraph.")
+        self.assertEqual(node.to_html(), "<p>This is a paragraph.</p>")
+
 
 if __name__ == "__main__":
     unittest.main()
