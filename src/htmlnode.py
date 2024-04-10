@@ -66,4 +66,5 @@ class ParentNode(HTMLNode):
             raise ValueError("Not a parent node")
 
         children_list = [node.to_html() for node in self.children]
-        return "".join(children_list)
+        children_str = "".join(children_list)
+        return f"<{self.tag}>{children_str}</{self.tag}>"
