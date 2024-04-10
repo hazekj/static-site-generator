@@ -25,7 +25,7 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual(node.to_html(), "<p>This is a paragraph.</p>")
 
 
-class TestParetnNode(unittest.TestCase):
+class TestParentNode(unittest.TestCase):
     def test_to_html(self):
         node = ParentNode(
             "p",
@@ -39,6 +39,39 @@ class TestParetnNode(unittest.TestCase):
         self.assertEqual(
             node.to_html(),
             "<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>",
+        )
+
+    def test_to_html2(self):
+        node = ParentNode(
+            None, [LeafNode("b", "Bold text"), LeafNode(None, "Normal text")]
+        )
+        with self.assertRaises(ValueError, msg="Must have tag"):
+            node.to_html()
+
+    def test_to_html3(self):
+        node = ParentNode("a", None)
+        with self.assertRaises(ValueError):
+            node.to_html()
+
+    def test_to_html4(self):
+        node = ParentNode(
+            "div",
+            [
+                ParentNode(
+                    "p",
+                    [
+                        LeafNode(
+                            "div", "italic text", {"class": "divider", "id": "divisor"}
+                        )
+                    ],
+                    {"id": "para"},
+                ),
+                LeafNode(None, "Normal text"),
+            ],
+        )
+        self.assertEqual(
+            node.to_html(),
+            '<div><p id="para"><div class="divider" id="divisor">italic text</div></p>Normal text</div>',
         )
 
 
