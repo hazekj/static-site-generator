@@ -67,4 +67,4 @@ class ParentNode(HTMLNode):
 
         children_list = [node.to_html() for node in self.children]
         children_str = "".join(children_list)
-        return f"<{self.tag}>{children_str}</{self.tag}>"
+        return f"<{self.tag}{self.props_to_html()}>{children_str}</{self.tag}>"
